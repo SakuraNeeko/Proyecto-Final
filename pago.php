@@ -157,7 +157,7 @@ if($productos != null ){
         },
         createOrder: function(data, actions){
             // Obtener el valor total desde el elemento con id 'total'
-            // Est es una manera de solucionar el cuestionable problema de cierrre de ventana automatico
+            // Est es una manera de solucionar el cuestionable problema de cierre de ventanana automatico
             var total = document.getElementById('total').innerText.replace('<?php echo MONEDA ?>', '').replace(',', '');
 
             return actions.order.create({
@@ -186,6 +186,8 @@ if($productos != null ){
                     body: JSON.stringify({
                         detalles: detalles
                     })
+                }).then(function(response){
+                    window.location.href = "completado.php?key=" + detalles['id']; //$datos['detalles']['id']
                 })
 
             });
