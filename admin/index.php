@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <?php 
 
 require 'config/config.php';
@@ -92,4 +93,16 @@ if(!empty($_POST)){
     <script src="js/scripts.js"></script>
 </body>
 
+=======
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>Login</h2>
+</body>
+>>>>>>> 3c6cb5762e2f334aa695fb1ed69e756cd7d3ec5f
 </html>

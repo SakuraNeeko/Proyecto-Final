@@ -8,7 +8,11 @@ Here is the full list of options available to you. You can also have a look at
 
     use ZipStream\ZipStream;
 
+<<<<<<< HEAD
     require 'vendor/autoload.php';
+=======
+    require_once 'vendor/autoload.php';
+>>>>>>> 3c6cb5762e2f334aa695fb1ed69e756cd7d3ec5f
 
     $zip = new ZipStream(
         // Define output stream

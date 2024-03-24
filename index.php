@@ -55,7 +55,11 @@ $resultado = $sql->fetchAll(PDO::FETCH_ASSOC);  /* con esto estamos consultando 
                         <img src="<?php echo $imagen; ?>">
                         <div class="card-body">
                             <h5 class="card-title"><?php echo $row['nombre']; ?></h5> <!-- h5 para el titulo del producto -->
+<<<<<<< HEAD
                             <p class="text-info"> <?php echo MONEDA ?> <?php echo number_format($row['precio'], 2, '.',','); ?></p>
+=======
+                            <p class="text-info"> <?php echo MONEDA ?> <span class="fw-bold"><?php echo number_format($row['precio'], 2, '.',','); ?></span></p>
+>>>>>>> 3c6cb5762e2f334aa695fb1ed69e756cd7d3ec5f
                             <?php if($row['descuento'] > 0){ ?>
                                 <strong><em><p class="text-danger">Descuento: <?php echo $row['descuento']; ?>%</p></em></strong>
                             <?php } ?>

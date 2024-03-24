@@ -54,7 +54,11 @@ if(is_array($datos)){
               $sql_insert->execute([$id, $clave, $row_prod['nombre'], $precio_desc, $cantidad]);
           
             }
+<<<<<<< HEAD
             require_once 'Mailer.php';
+=======
+            require 'Mailer.php';
+>>>>>>> 3c6cb5762e2f334aa695fb1ed69e756cd7d3ec5f
 
             $asunto = "Detalles de su pedido";
             $cuerpo = '<h4>Gracias por su compra</h4>';

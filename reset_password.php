@@ -1,8 +1,14 @@
 <?php
 
+<<<<<<< HEAD
 require_once 'config/config.php';
 
 require_once 'clases/clienteFunciones.php';
+=======
+require 'config/config.php';
+require 'config/database.php';
+require 'clases/clienteFunciones.php';
+>>>>>>> 3c6cb5762e2f334aa695fb1ed69e756cd7d3ec5f
 
 $user_id = $_GET['id'] ?? $_POST['user_id'] ?? ''; //Primero busca el id, sino el user_id, sino toma vomo vacio las variables
 $token = $_GET['token'] ?? $_POST['token'] ?? '';

@@ -1,8 +1,14 @@
 <?php
 
+<<<<<<< HEAD
 require_once 'config/config.php';
 
 require_once 'clases/clienteFunciones.php';
+=======
+require 'config/config.php';
+require 'config/database.php';
+require 'clases/clienteFunciones.php';
+>>>>>>> 3c6cb5762e2f334aa695fb1ed69e756cd7d3ec5f
 
 $id = isset($_GET['id']) ? $_GET['id'] : '';
 $token = isset($_GET['token']) ? $_GET['token'] : '';

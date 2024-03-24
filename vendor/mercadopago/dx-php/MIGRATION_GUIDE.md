@@ -48,7 +48,11 @@ In the new SDK version, some namespaces have been updated. Check all the imports
 
 - **Version 2 example:**
 ```php
+<<<<<<< HEAD
 require './vendor/autoload.php';
+=======
+require_once './vendor/autoload.php';
+>>>>>>> 3c6cb5762e2f334aa695fb1ed69e756cd7d3ec5f
 
 MercadoPago\SDK::setAccessToken("<ACCESS_TOKEN>");
 
@@ -57,7 +61,11 @@ $payment = new MercadoPago\Payment();
 
 - **Version 3 example:**
 ```php
+<<<<<<< HEAD
 require './vendor/autoload.php';
+=======
+require_once './vendor/autoload.php';
+>>>>>>> 3c6cb5762e2f334aa695fb1ed69e756cd7d3ec5f
 
 use MercadoPago\Client\Payment\PaymentClient;
 use MercadoPago\MercadoPagoConfig;
