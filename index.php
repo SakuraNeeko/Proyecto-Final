@@ -1,11 +1,12 @@
 <?php
 
-require 'config/config.php';
-require 'config/database.php';
+require_once 'config/config.php';
+
+
 $db = new Database();
 $con = $db->conectar();
 
-$sql = $con->prepare("SELECT id, nombre, precio FROM productos WHERE activo=1"); /* con esto generamos consultas preparadas */
+$sql = $con->prepare("SELECT id, nombre, precio, descuento FROM productos WHERE activo=1"); /* con esto generamos consultas preparadas */
 $sql->execute();
 $resultado = $sql->fetchAll(PDO::FETCH_ASSOC);  /* con esto estamos consultando la tabla entera */
 
@@ -21,49 +22,19 @@ $resultado = $sql->fetchAll(PDO::FETCH_ASSOC);  /* con esto estamos consultando 
 
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tienda Online</title>
+    <title>Tienda WebTech Solutions</title>
     <!-- cdn servidores que almacenan bibliotecas  -->
     <!-- CDN busca el mas cercano al usuario que está solicitando la página dando el recurso, siendo mas veloz y consumiendo menos recursos -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+<!--     <link href="css/all.min.css" rel = "stylesheet"> -->
     <link href="css/estilos.css" rel="stylesheet">
 </head>
 <body>
 
-<header data-bs-theme="dark">
-  
-  <div class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <div class="container">
-      <a href="#" class="navbar-brand">
-        <strong>WebTech Solutions</strong>
-      </a>
-      <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
+<?php include 'menu.php'; ?> 
 
-      <div class= "collapse navbar-collapse" id ="navbarHeader">
-        <ul class ="navbar-nav me-auto mb-2 mb-lg-0">
-            <li class="nav-item">
-                <a href="#" class="nav-link active">Catálogo</a>
-
-            </li>
-
-            <li class="nav-item">
-                <a href="#" class="nav-link">Contacto</a>
-
-            </li>
-        </ul>
-        
-        <a href="checkout.php" class="btn btn-primary">
-            Carrito <span id = "num_cart" class = "badge bg-secondary"><?php echo $num_cart; ?></span>
-        </a>
-        
-      </div>
-
-
-    </div>
-  </div>
-</header>
 <!-- contenido -->
 <main>
     <div class="container">
@@ -84,18 +55,22 @@ $resultado = $sql->fetchAll(PDO::FETCH_ASSOC);  /* con esto estamos consultando 
                         <img src="<?php echo $imagen; ?>">
                         <div class="card-body">
                             <h5 class="card-title"><?php echo $row['nombre']; ?></h5> <!-- h5 para el titulo del producto -->
-                            <p class="card-text"> $ <?php echo number_format($row['precio'], 2, '.',','); ?></p>
+                            <p class="text-info"> <?php echo MONEDA ?> <?php echo number_format($row['precio'], 2, '.',','); ?></p>
+                            <?php if($row['descuento'] > 0){ ?>
+                                <strong><em><p class="text-danger">Descuento: <?php echo $row['descuento']; ?>%</p></em></strong>
+                            <?php } ?>
+                            <hr>
                             <div class="d-flex justify-content-between align-items-center">
-                                <div class="btn-group">
-                                    <a href="details.php?id=<?php echo $row['id']; ?>&token=<?php echo hash_hmac('sha1' , $row['id'], KEY_TOKEN); ?>" class="btn btn-primary">Detalles</a>
-                                </div>
-                                <button class ="btn btn-outline-success" type="button" onclick="addProducto(<?php echo $row['id']; ?>, '<?php echo hash_hmac('sha1' , $row['id'], KEY_TOKEN); ?>')">Agregar al carrito</button>
+                                    <a href="details.php?id=<?php echo $row['id']; ?>&token=<?php echo hash_hmac('sha1' , $row['id'], KEY_TOKEN); ?>" class="btn btn-primary"><i class="fas fa-info-circle"></i> Detalles</a>
+                                    <button class ="btn btn-outline-success" type="button" onclick="addProducto(<?php echo $row['id']; ?>, '<?php echo hash_hmac('sha1' , $row['id'], KEY_TOKEN); ?>')">Agregar al carrito <i class="fas fa-plus"></i></button>
                             </div>
                         </div>
                     </div>
                 </div>
             <?php } ?>
 </main>
+
+<?php include 'footer.php'; ?>
 
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
@@ -120,6 +95,8 @@ $resultado = $sql->fetchAll(PDO::FETCH_ASSOC);  /* con esto estamos consultando 
         })
     }
 </script>
+
+<script src="https://kit.fontawesome.com/af1771b0a0.js" crossorigin="anonymous"></script>
 
 </body>
 </html>
