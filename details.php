@@ -1,6 +1,6 @@
 <?php
-require 'config/config.php';
-require 'config/database.php';
+require_once 'config/config.php';
+
 $db = new Database();
 $con = $db->conectar();
 
@@ -49,9 +49,15 @@ if($id == '' || $token == ''){
             }
             $dir->close();
         }
-        }
+
+        $sqlCaracter = $con->prepare("SELECT DISTINCT(det.id_caracteristica) AS idCat, cat.caracteristica FROM det_prod_caracter AS  det INNER JOIN caracteristicas AS cat ON det.id_caracteristica=cat.id WHERE det.id_producto=?");
+        $sqlCaracter->execute([$id]);
         
     } else {
+        echo 'Error al procesar la petición';
+        exit;
+    }
+    }else{
         echo 'Error al procesar la petición';
         exit;
     }
@@ -78,41 +84,7 @@ $resultado = $sql->fetchAll(PDO::FETCH_ASSOC);  /* con esto estamos consultando 
     <link href="css/estilos.css" rel="stylesheet">
 </head>
 <body>
-
-<header data-bs-theme="dark">
-  
-  <div class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <div class="container">
-      <a href="#" class="navbar-brand">
-        <strong>WebTech Solutions</strong>
-      </a>
-      <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-
-      <div class= "collapse navbar-collapse" id ="navbarHeader">
-        <ul class ="navbar-nav me-auto mb-2 mb-lg-0">
-            <li class="nav-item">
-                <a href="#" class="nav-link active">Catálogo</a>
-
-            </li>
-
-            <li class="nav-item">
-                <a href="#" class="nav-link">Contacto</a>
-
-            </li>
-        </ul>
-        
-        <a href="checkout.php" class="btn btn-primary">
-            Carrito <span id = "num_cart" class = "badge bg-secondary"><?php echo $num_cart; ?></span>
-        </a>
-        
-      </div>
-
-
-    </div>
-  </div>
-</header>
+    <?php include 'menu.php'; ?> 
 <!-- contenido -->
 <main>
     <div class="container">
@@ -145,11 +117,12 @@ $resultado = $sql->fetchAll(PDO::FETCH_ASSOC);  /* con esto estamos consultando 
             </div>
             <div class = "col-md-6 order-md-2">
                 <h2><?php echo $nombre; ?></h2>
-
                 <?php if($descuento > 0) { ?>
+                    
                     <p><del><?php echo MONEDA . number_format($precio, 2, '.', '.'); ?></del></p>
+                    <hr>
                     <h2><?php echo MONEDA . number_format($precio_desc, 2, '.', '.'); ?> 
-                <small class ="text-success"><?php echo $descuento; ?>% descuento</small>
+                <small class ="text-success"> | <?php echo $descuento; ?>% descuento</small>
                 </h2>
                 
                 <?php } else { ?>
@@ -158,14 +131,44 @@ $resultado = $sql->fetchAll(PDO::FETCH_ASSOC);  /* con esto estamos consultando 
                 <h2><?php echo MONEDA . number_format($precio, 2, '.', '.'); ?></h2>
 
                 <?php } ?>     
+                <hr>
 
                 <p class ="lead">
                     <?php echo $descripcion; ?>
                 </p>
 
+                <div class="col-3 my-3">
+                    <?php 
+                    
+                    while ($row_cat = $sqlCaracter->fetch(PDO::FETCH_ASSOC)) {
+                        $idCat = $row_cat['idCat'];
+                        echo $row_cat['caracteristica']. ": ";
+
+                        echo  "<select class='form-select' id='cat_$idCat'>"; 
+                        
+                        //obtengo
+
+                        $sqlDet = $con->prepare("SELECT id, valor, stock FROM det_prod_caracter WHERE id_producto=? AND id_caracteristica=?");
+                        $sqlDet->execute([$id, $idCat]);
+                        while($row_det = $sqlDet->fetch(PDO::FETCH_ASSOC)){
+                            echo "<option id='" . $row_det['id'] . "'>" . $row_det['valor'] . "</option>";
+
+                        }
+
+                        echo "</select>";
+                    } 
+                    ?>
+                </div>
+
+                <hr>
+
+                <div class="col-3 my-3">
+                    Cantidad: <input class="form-control" id="cantidad" name ="cantidad" type="number" min="1" max="10" value="1"></input>
+
+                </div>
+
                 <div class ="d-grid gap-3 col-10 mx-auto">
-                    <button class ="btn btn-primary" type="button">Comprar ahora</button>
-                    <button class ="btn btn-outline-primary" type="button" onclick="addProducto(<?php echo $id; ?>, '<?php echo $token_tmp; ?>')">Agregar al carrito</button>
+                    <button class ="btn btn-outline-primary" id = "btnAgregar" type="button"><i class="fas fa-cart-plus"></i> Agregar al carrito</button>
                 </div>
 
             </div>
@@ -178,12 +181,21 @@ $resultado = $sql->fetchAll(PDO::FETCH_ASSOC);  /* con esto estamos consultando 
 
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
 <script>
-    function addProducto(id, token){  /* enviamos mediante ajax para actualizar en tiempo real los datos del carrito de compras */
-        let url = 'clases/carrito.php'
-        let formData = new FormData()
-        formData.append('id' , id)
-        formData.append('token' , token)  
+    let btnAgregar = document.getElementById("btnAgregar");
+    btnAgregar.onclick = function() {
+        let inputCantidad = document.getElementById("cantidad").value; // Capturar el valor del input de cantidad aquí
+        addProducto(<?php echo $id; ?>, inputCantidad, '<?php echo $token_tmp; ?>');
+    };
+     
+    function addProducto(id, cantidad, token) {
+        /* enviamos mediante ajax para actualizar en tiempo real los datos del carrito de compras */
+        let url = 'clases/carrito.php';
+        let formData = new FormData();
+        formData.append('id', id);
+        formData.append('cantidad', cantidad);
+        formData.append('token', token);
 
         fetch(url, {
             method: 'POST',
@@ -192,11 +204,14 @@ $resultado = $sql->fetchAll(PDO::FETCH_ASSOC);  /* con esto estamos consultando 
         }).then(response=> response.json())
         .then(data => {
             if(data.ok){
-                let elemento = document.getElementById("num_cart")
-                elemento.innerHTML = data.numero 
+                let elemento = document.getElementById("num_cart");
+                elemento.innerHTML = data.numero;
             }
-        })
+        });
     }
 </script>
+
+<script src="https://kit.fontawesome.com/af1771b0a0.js" crossorigin="anonymous"></script>
+
 </body>
 </html>
