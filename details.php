@@ -168,6 +168,10 @@ $resultado = $sql->fetchAll(PDO::FETCH_ASSOC);  /* con esto estamos consultando 
                 </div>
 
                 <div class ="d-grid gap-3 col-10 mx-auto">
+<<<<<<< HEAD
+=======
+                    <button class ="btn btn-primary" type="button"><i class="fas fa-credit-card"></i> Comprar ahora</button>
+>>>>>>> 09d619fe8e08ffe7bbeeb58498e73a890730f4ff
                     <button class ="btn btn-outline-primary" id = "btnAgregar" type="button"><i class="fas fa-cart-plus"></i> Agregar al carrito</button>
                 </div>
 

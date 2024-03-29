@@ -71,7 +71,11 @@
                     <div class="card text-center">
                         <div class="card-body">
                             <h5 class="card-title">Información</h5>
+<<<<<<< HEAD
                             <a href="clases/informacion.php" class="btn btn-info btn-lg"><i class="fas fa-circle-info fa-shake" style="color: #d6e5ff;"></i></a>
+=======
+                            <a href="../clases/informacion.php" class="btn btn-info btn-lg"><i class="fas fa-circle-info fa-shake" style="color: #d6e5ff;"></i></a>
+>>>>>>> 09d619fe8e08ffe7bbeeb58498e73a890730f4ff
                         </div>
                     </div>
                 </div>

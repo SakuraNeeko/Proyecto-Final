@@ -2,7 +2,15 @@
   
   <div class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container">
+<<<<<<< HEAD
       <a href="webtech.php" class="navbar-brand">
+=======
+<<<<<<< HEAD
+      <a href="webtech.php" class="navbar-brand">
+=======
+      <a href="#" class="navbar-brand">
+>>>>>>> 3c6cb5762e2f334aa695fb1ed69e756cd7d3ec5f
+>>>>>>> 09d619fe8e08ffe7bbeeb58498e73a890730f4ff
         <strong>WebTech Solutions</strong>
       </a>
       <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
@@ -12,12 +20,24 @@
       <div class= "collapse navbar-collapse" id ="navbarHeader">
         <ul class ="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="nav-item">
+<<<<<<< HEAD
                 <a href="index.php" class="nav-link active">Catálogo</a>
+=======
+<<<<<<< HEAD
+                <a href="index.php" class="nav-link active">Catálogo</a>
+=======
+                <a href="#" class="nav-link active">Catálogo</a>
+>>>>>>> 3c6cb5762e2f334aa695fb1ed69e756cd7d3ec5f
+>>>>>>> 09d619fe8e08ffe7bbeeb58498e73a890730f4ff
 
             </li>
 
             <li class="nav-item">
+<<<<<<< HEAD
                 <a href="clases/informacion.php" class="nav-link">Contacto</a>
+=======
+                <a href="#" class="nav-link">Contacto</a>
+>>>>>>> 09d619fe8e08ffe7bbeeb58498e73a890730f4ff
 
             </li>
         </ul>

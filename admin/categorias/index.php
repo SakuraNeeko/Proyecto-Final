@@ -49,10 +49,17 @@ $categorias = $resultado->fetchAll(PDO::FETCH_ASSOC);
                         <tr>
                             <td><?php echo $categoria['id']; ?></td>
                             <td><?php echo $categoria['nombre']; ?></td>
+<<<<<<< HEAD
                             <td><a class="btn btn-warning btn-sm" href="edita.php?id=<?php echo $categoria['id']; ?>"><i class="fa-solid fa-pen-to-square"></i></a></td>
                             <td>
                                 <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#modalElimina" data-bs-id="<?php echo $categoria['id']; ?>">
                                     <i class="fa-solid fa-trash"></i>
+=======
+                            <td><a class="btn btn-warning btn-sm" href="edita.php?id=<?php echo $categoria['id']; ?>">Editar</a></td>
+                            <td>
+                                <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#modalElimina" data-bs-id="<?php echo $categoria['id']; ?>">
+                                    Eliminar
+>>>>>>> 09d619fe8e08ffe7bbeeb58498e73a890730f4ff
                                 </button>
 
                             </td>
@@ -93,12 +100,20 @@ $categorias = $resultado->fetchAll(PDO::FETCH_ASSOC);
 <!-- Optional: Place to the bottom of scripts -->
 <script>
     let eliminaModal = document.getElementById('modalElimina')
+<<<<<<< HEAD
     eliminaModal.addEventListener('show.bs.modal', function(event) {
+=======
+    eliminaModal.addEventListener('show.bs.modal', function(event){
+>>>>>>> 09d619fe8e08ffe7bbeeb58498e73a890730f4ff
         let button = event.relatedTarget
         let id = button.getAttribute('data-bs-id')
 
         let modalInput = eliminaModal.querySelector('.modal-footer input')
+<<<<<<< HEAD
         modalInput.value = id
+=======
+        modalInput.value =id
+>>>>>>> 09d619fe8e08ffe7bbeeb58498e73a890730f4ff
     })
 </script>
 
