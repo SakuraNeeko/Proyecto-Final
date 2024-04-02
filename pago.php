@@ -1,7 +1,7 @@
 <?php
 
-require 'config/config.php';
-require 'config/database.php';
+require_once 'config/config.php';
+
 
 $db = new Database();
 $con = $db->conectar();
@@ -17,7 +17,6 @@ if($productos != null ){
     $sql = $con->prepare("SELECT id, nombre, precio, descuento, $cantidad AS cantidad FROM productos WHERE id=? AND activo=1"); /* con esto generamos consultas preparadas */
     $sql->execute([$clave]);
     $lista_carrito[] = $sql->fetch(PDO::FETCH_ASSOC);  /* con esto estamos consultando producto por producto */
-
   }
 } else{
     header("Location: index.php");
@@ -46,40 +45,8 @@ if($productos != null ){
 </head>
 <body>
 
-<header data-bs-theme="dark">
-  
-  <div class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <div class="container">
-      <a href="#" class="navbar-brand">
-        <strong>WebTech Solutions</strong>
-      </a>
-      <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
+    <?php include 'menu.php'; ?> 
 
-      <div class= "collapse navbar-collapse" id ="navbarHeader">
-        <ul class ="navbar-nav me-auto mb-2 mb-lg-0">
-            <li class="nav-item">
-                <a href="#" class="nav-link active">Catálogo</a>
-
-            </li>
-
-            <li class="nav-item">
-                <a href="#" class="nav-link">Contacto</a>
-
-            </li>
-        </ul>
-        
-        <a href="carrito.php" class="btn btn-primary">
-            Carrito <span id = "num_cart" class = "badge bg-secondary"><?php echo $num_cart; ?></span>
-        </a>
-        
-      </div>
-
-
-    </div>
-  </div>
-</header>
 <!-- contenido -->
 <main>
     <div class="container"> 
@@ -199,6 +166,8 @@ if($productos != null ){
         }
     }).render("#paypal-button-container");
 </script>
+
+<script src="https://kit.fontawesome.com/af1771b0a0.js" crossorigin="anonymous"></script>
 
 </body>
 
