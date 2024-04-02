@@ -1,6 +1,10 @@
 <?php 
 
 require_once '../config/config.php';
+<<<<<<< HEAD
+=======
+require_once '../config/database.php';
+>>>>>>> bc5269bfbb7f4e0131578d5bc2a87ce2c27716e8
 
 $db = new Database();
 $con = $db->conectar();
@@ -55,7 +59,19 @@ if(is_array($datos)){
               }
           
             }
+<<<<<<< HEAD
             require 'Mailer.php';
+=======
+<<<<<<< HEAD
+            require 'Mailer.php';
+=======
+<<<<<<< HEAD
+            require_once 'Mailer.php';
+=======
+            require 'Mailer.php';
+>>>>>>> 3c6cb5762e2f334aa695fb1ed69e756cd7d3ec5f
+>>>>>>> 09d619fe8e08ffe7bbeeb58498e73a890730f4ff
+>>>>>>> bc5269bfbb7f4e0131578d5bc2a87ce2c27716e8
 
             $asunto = "Detalles de su pedido";
             $cuerpo = '<h4>Gracias por su compra</h4>';

@@ -178,10 +178,13 @@ if ($productos != null) {
             }).format(total)
             document.getElementById('total').innerHTML = '<?php echo MONEDA ?>' + total
 
+<<<<<<< HEAD
           } else{
             let inputCantidad = document.getElementById('cantidad_' + id)
             inputCantidad.value = data.cantidadAnterior
             alert ("No hay suficientes existencias en stock")
+=======
+>>>>>>> bc5269bfbb7f4e0131578d5bc2a87ce2c27716e8
           }
         })
     }

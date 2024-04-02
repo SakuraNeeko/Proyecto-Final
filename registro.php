@@ -1,8 +1,26 @@
 <?php
 
+<<<<<<< HEAD
 require_once 'config/config.php';
 
 require_once 'clases/clienteFunciones.php';
+=======
+<<<<<<< HEAD
+require_once 'config/config.php';
+
+require_once 'clases/clienteFunciones.php';
+=======
+<<<<<<< HEAD
+require_once 'config/config.php';
+
+require_once 'clases/clienteFunciones.php';
+=======
+require 'config/config.php';
+require 'config/database.php';
+require 'clases/clienteFunciones.php';
+>>>>>>> 3c6cb5762e2f334aa695fb1ed69e756cd7d3ec5f
+>>>>>>> 09d619fe8e08ffe7bbeeb58498e73a890730f4ff
+>>>>>>> bc5269bfbb7f4e0131578d5bc2a87ce2c27716e8
 
 // Establish database connection
 $db = new Database();
@@ -50,7 +68,19 @@ if (!empty($_POST)) {
 
         if ($id > 0) {
 
+<<<<<<< HEAD
             require_once 'clases/Mailer.php';
+=======
+<<<<<<< HEAD
+            require_once 'clases/Mailer.php';
+=======
+<<<<<<< HEAD
+            require_once 'clases/Mailer.php';
+=======
+            require 'clases/Mailer.php';
+>>>>>>> 3c6cb5762e2f334aa695fb1ed69e756cd7d3ec5f
+>>>>>>> 09d619fe8e08ffe7bbeeb58498e73a890730f4ff
+>>>>>>> bc5269bfbb7f4e0131578d5bc2a87ce2c27716e8
             $mailer = new Mailer();
             $token = generarToken();
             

@@ -55,7 +55,18 @@ if ($id == '' || $token == '') {
             echo 'Error al procesar la petición';
             exit;
         }
+<<<<<<< HEAD
+=======
+
+        $sqlCaracter = $con->prepare("SELECT DISTINCT(det.id_caracteristica) AS idCat, cat.caracteristica FROM det_prod_caracter AS  det INNER JOIN caracteristicas AS cat ON det.id_caracteristica=cat.id WHERE det.id_producto=?");
+        $sqlCaracter->execute([$id]);
+        
+>>>>>>> bc5269bfbb7f4e0131578d5bc2a87ce2c27716e8
     } else {
+        echo 'Error al procesar la petición';
+        exit;
+    }
+    }else{
         echo 'Error al procesar la petición';
         exit;
     }
@@ -84,6 +95,7 @@ $resultado = $sql->fetchAll(PDO::FETCH_ASSOC);  /* con esto estamos consultando 
 </head>
 
 <body>
+<<<<<<< HEAD
     <?php include 'menu.php'; ?>
     <!-- contenido -->
     <main>
@@ -94,6 +106,23 @@ $resultado = $sql->fetchAll(PDO::FETCH_ASSOC);  /* con esto estamos consultando 
                         <div class="carousel-inner">
                             <div class="carousel-item active">
                                 <img src="<?php echo $rutaImg; ?>" class="d-block w-100 img-fluid" class="img-fluid"> <!-- Agregamos la clase img-fluid para que la imagen sea receptiva -->
+=======
+    <?php include 'menu.php'; ?> 
+<!-- contenido -->
+<main>
+    <div class="container">
+        <div class = "row">
+            <div class = "col-md-6 order-md-1">
+                <div id="carouselImages" class="carousel slide">
+                     <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <img src = "<?php echo $rutaImg; ?>"  class="d-block w-100 img-fluid" class="img-fluid"> <!-- Agregamos la clase img-fluid para que la imagen sea receptiva -->
+                        </div>
+
+                        <?php foreach($imagenes as $img) {?>
+                            <div class = "carousel-item">
+                                <img src = "<?php echo $img; ?>" class = "d-block w-100 img-fluid">
+>>>>>>> bc5269bfbb7f4e0131578d5bc2a87ce2c27716e8
                             </div>
 
                             <?php foreach ($imagenes as $img) { ?>
@@ -128,10 +157,25 @@ $resultado = $sql->fetchAll(PDO::FETCH_ASSOC);  /* con esto estamos consultando 
                     <?php } else { ?>
 
 
+<<<<<<< HEAD
                         <h2><?php echo MONEDA . number_format($precio, 2, '.', '.'); ?></h2>
 
                     <?php } ?>
                     <hr>
+=======
+            </div>
+            <div class = "col-md-6 order-md-2">
+                <h2><?php echo $nombre; ?></h2>
+                <?php if($descuento > 0) { ?>
+                    
+                    <p><del><?php echo MONEDA . number_format($precio, 2, '.', '.'); ?></del></p>
+                    <hr>
+                    <h2><?php echo MONEDA . number_format($precio_desc, 2, '.', '.'); ?> 
+                <small class ="text-success"> | <?php echo $descuento; ?>% descuento</small>
+                </h2>
+                
+                <?php } else { ?>
+>>>>>>> bc5269bfbb7f4e0131578d5bc2a87ce2c27716e8
 
                     <p class="lead">
                         <?php echo $descripcion; ?>
@@ -140,9 +184,14 @@ $resultado = $sql->fetchAll(PDO::FETCH_ASSOC);  /* con esto estamos consultando 
                     <!-- <div class="col-3 my-3">
                         <?php
 
+<<<<<<< HEAD
                         /* while ($row_cat = $sqlCaracter->fetch(PDO::FETCH_ASSOC)) {
                             $idCat = $row_cat['idCat'];
                             echo $row_cat['caracteristica'] . ": ";
+=======
+                <?php } ?>     
+                <hr>
+>>>>>>> bc5269bfbb7f4e0131578d5bc2a87ce2c27716e8
 
                             echo  "<select class='form-select' id='cat_$idCat'>";
 
@@ -170,6 +219,45 @@ $resultado = $sql->fetchAll(PDO::FETCH_ASSOC);  /* con esto estamos consultando 
                         <button class="btn btn-outline-primary" id="btnAgregar" type="button"><i class="fas fa-cart-plus"></i> Agregar al carrito</button>
                     </div>
 
+<<<<<<< HEAD
+=======
+                <div class="col-3 my-3">
+                    <?php 
+                    
+                    while ($row_cat = $sqlCaracter->fetch(PDO::FETCH_ASSOC)) {
+                        $idCat = $row_cat['idCat'];
+                        echo $row_cat['caracteristica']. ": ";
+
+                        echo  "<select class='form-select' id='cat_$idCat'>"; 
+                        
+                        //obtengo
+
+                        $sqlDet = $con->prepare("SELECT id, valor, stock FROM det_prod_caracter WHERE id_producto=? AND id_caracteristica=?");
+                        $sqlDet->execute([$id, $idCat]);
+                        while($row_det = $sqlDet->fetch(PDO::FETCH_ASSOC)){
+                            echo "<option id='" . $row_det['id'] . "'>" . $row_det['valor'] . "</option>";
+
+                        }
+
+                        echo "</select>";
+                    } 
+                    ?>
+                </div>
+
+                <hr>
+
+                <div class="col-3 my-3">
+                    Cantidad: <input class="form-control" id="cantidad" name ="cantidad" type="number" min="1" max="10" value="1"></input>
+
+                </div>
+
+                <div class ="d-grid gap-3 col-10 mx-auto">
+<<<<<<< HEAD
+=======
+                    <button class ="btn btn-primary" type="button"><i class="fas fa-credit-card"></i> Comprar ahora</button>
+>>>>>>> 09d619fe8e08ffe7bbeeb58498e73a890730f4ff
+                    <button class ="btn btn-outline-primary" id = "btnAgregar" type="button"><i class="fas fa-cart-plus"></i> Agregar al carrito</button>
+>>>>>>> bc5269bfbb7f4e0131578d5bc2a87ce2c27716e8
                 </div>
 
             </div>
@@ -179,6 +267,7 @@ $resultado = $sql->fetchAll(PDO::FETCH_ASSOC);  /* con esto estamos consultando 
     </main>
 
 
+<<<<<<< HEAD
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 
     <script>
@@ -214,6 +303,41 @@ $resultado = $sql->fetchAll(PDO::FETCH_ASSOC);  /* con esto estamos consultando 
 
     <script src="https://kit.fontawesome.com/af1771b0a0.js" crossorigin="anonymous"></script>
 
+=======
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+<script>
+    let btnAgregar = document.getElementById("btnAgregar");
+    btnAgregar.onclick = function() {
+        let inputCantidad = document.getElementById("cantidad").value; // Capturar el valor del input de cantidad aquí
+        addProducto(<?php echo $id; ?>, inputCantidad, '<?php echo $token_tmp; ?>');
+    };
+     
+    function addProducto(id, cantidad, token) {
+        /* enviamos mediante ajax para actualizar en tiempo real los datos del carrito de compras */
+        let url = 'clases/carrito.php';
+        let formData = new FormData();
+        formData.append('id', id);
+        formData.append('cantidad', cantidad);
+        formData.append('token', token);
+
+        fetch(url, {
+            method: 'POST',
+            body: formData,
+            mode: 'cors'
+        }).then(response=> response.json())
+        .then(data => {
+            if(data.ok){
+                let elemento = document.getElementById("num_cart");
+                elemento.innerHTML = data.numero;
+            }
+        });
+    }
+</script>
+
+<script src="https://kit.fontawesome.com/af1771b0a0.js" crossorigin="anonymous"></script>
+
+>>>>>>> bc5269bfbb7f4e0131578d5bc2a87ce2c27716e8
 </body>
 
 </html>

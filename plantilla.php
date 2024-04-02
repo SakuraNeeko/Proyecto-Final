@@ -1,68 +1,44 @@
 <?php
 
-<<<<<<< HEAD
-require_once 'config/config.php';
-
-require_once 'clases/clienteFunciones.php';
-=======
-<<<<<<< HEAD
-require_once 'config/config.php';
-
-require_once 'clases/clienteFunciones.php';
-=======
-<<<<<<< HEAD
-require_once 'config/config.php';
-
-require_once 'clases/clienteFunciones.php';
-=======
 require 'config/config.php';
 require 'config/database.php';
 require 'clases/clienteFunciones.php';
->>>>>>> 3c6cb5762e2f334aa695fb1ed69e756cd7d3ec5f
->>>>>>> 09d619fe8e08ffe7bbeeb58498e73a890730f4ff
->>>>>>> bc5269bfbb7f4e0131578d5bc2a87ce2c27716e8
-
-$user_id = $_GET['id'] ?? $_POST['user_id'] ?? ''; //Primero busca el id, sino el user_id, sino toma vomo vacio las variables
-$token = $_GET['token'] ?? $_POST['token'] ?? '';
-
-if($user_id == '' || $token == ''){
-  header("Location: index.php");
-  exit;
-}
 
 $db = new Database();
 $con = $db->conectar();
 
 $errors = [];
 
-if(!verificaTokenRequest($user_id, $token, $con)){
-  echo "No se pudo verificar la información";
-  exit;
-}
-
 if (!empty($_POST)) {
 
+    $nombres = isset($_POST['nombres']) ? trim($_POST['nombres']) : '';
+    $apellidos = isset($_POST['apellidos']) ? trim($_POST['apellidos']) : '';
+    $email = isset($_POST['email']) ? trim($_POST['email']) : '';
+    $telefono = isset($_POST['telefono']) ? trim($_POST['telefono']) : '';
+    $dni = isset($_POST['dni']) ? trim($_POST['dni']) : '';
+    $usuario = isset($_POST['usuario']) ? trim($_POST['usuario']) : '';
     $password = isset($_POST['password']) ? trim($_POST['password']) : '';
     $repassword = isset($_POST['repassword']) ? trim($_POST['repassword']) : '';
 
-    if (esNulo([$user_id, $token, $password, $repassword])) {
+    if (esNulo([$nombres, $apellidos, $email, $telefono, $dni, $usuario, $password, $repassword])) {
         $errors[] = 'Debe llenar todos los campos';
+    }
+
+    if (!esEmail($email)) {
+        $errors[] = "La dirección de correo no es válida";
     }
 
     if (!validaPassword($password, $repassword)) {
         $errors[] = "Las contraseñas no coinciden";
     }
 
-    if(count($errors)==0){
-      $pass_hash = password_hash($password, PASSWORD_DEFAULT);
-      if(actualizaPassword($user_id, $pass_hash, $con)){
-        echo "Contraseña modificada.<br><a href='login.php'>Iniciar sesión</a>";
-        exit;
-      }else{
-        $errors[] = "Error al modificar contraseña. Intentalo nuevamente.";
-      }
+    if (usuarioExiste($usuario, $con)) {
+        $errors[] = "El nombre de usuario $usuario ya existe";
     }
 
+    if (emailExiste($email, $con)) {
+        $errors[] = "El correo electrónico $email ya existe";
+    }
 }
 
 ?>
@@ -117,36 +93,10 @@ if (!empty($_POST)) {
   </div>
 </header>
 <!-- contenido -->
-<main class="form-login m-auto pt-4">
-    <div class="text-center mt-4">
-        <h2 class="display-6 fw-bold">Cambiar Contraseña</h2>
+<main>
+    <div class="container">
+
     </div>
-  <?php mostrarMensajes($errors); ?>
-
-  <form action="reset_password.php" method = "post" class="row g-3" autocomplete="off">
-  
-  <input type="hidden" name="user_id" id="user_id" value="<?= $user_id; ?>"/>
-  <input type="hidden" name="token" id="token" value="<?= $token; ?>"/>
-
-    <div class="form-floating">
-      <input class="form-control" type="password" name="password" id="password" placeholder="Nueva Contraseña" required>
-      <label for="password">Nueva Contraseña</label>
-    </div>
-
-    <div class="form-floating">
-      <input class="form-control" type="password" name="repassword" id="repassword" placeholder="Confirmar Contraseña" required>
-      <label for="repassword">Confirmar Contraseña</label>
-    </div>
-
-    <div class="d-grid gap-3 col-12">
-      <button type="submit" class="btn btn-primary"><i class="fas fa-hand-point-right"></i> Continuar</button>
-    </div>
-
-    <div class="col-12">
-      <a href="login.php">Iniciar Sesión</a>
-    </div>
-
-  </form>
 </main>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>

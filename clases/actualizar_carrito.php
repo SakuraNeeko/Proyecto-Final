@@ -1,6 +1,10 @@
 <?php
 
 require_once '../config/config.php';
+<<<<<<< HEAD
+=======
+require_once '../config/database.php';
+>>>>>>> bc5269bfbb7f4e0131578d5bc2a87ce2c27716e8
 
 if (isset($_POST['action'])) {
     $action = $_POST['action'];

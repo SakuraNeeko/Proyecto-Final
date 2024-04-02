@@ -10,6 +10,7 @@ function esNulo(array $parametros)
     return false;
 }
 
+<<<<<<< HEAD
 function validaPassword($password, $repassword){
     if(strcmp($password, $repassword) === 0){
         return true;
@@ -17,6 +18,8 @@ function validaPassword($password, $repassword){
 return false;
 }
 
+=======
+>>>>>>> bc5269bfbb7f4e0131578d5bc2a87ce2c27716e8
 function usuarioExiste($usuario, $con)
 {
     $sql = $con->prepare("SELECT id FROM usuarios WHERE usuario LIKE ? LIMIT 1");
@@ -117,6 +120,7 @@ function actualizaPassword($user_id, $password, $con)
     }
     return false;
 }
+<<<<<<< HEAD
 
 function actualizaPasswordAdmin($user_id, $password, $con)
 {
@@ -126,3 +130,5 @@ function actualizaPasswordAdmin($user_id, $password, $con)
     }
     return false;
 }
+=======
+>>>>>>> bc5269bfbb7f4e0131578d5bc2a87ce2c27716e8

@@ -1,6 +1,6 @@
 <?php
 
-require '../config/config.php';
+require_once '../config/config.php';
 
 $datos['ok'] = false;
 
@@ -12,10 +12,19 @@ if (isset($_POST['id'])) {
 
     $token_tmp = hash_hmac('sha1', $id, KEY_TOKEN);
 
+<<<<<<< HEAD
     if ($token == $token_tmp && $cantidad > 0 && is_numeric($cantidad)) {
 
         if (isset($_SESSION['carrito']['productos'][$id])) {
             $cantidad += $_SESSION['carrito']['productos'][$id];
+=======
+    if($token == $token_tmp && $cantidad > 0 && is_numeric($cantidad)) {
+
+        if(isset($_SESSION['carrito']['productos'][$id])){
+            $_SESSION['carrito']['productos'][$id] += $cantidad;
+        }else{
+            $_SESSION['carrito']['productos'][$id] = $cantidad; //1 = 1
+>>>>>>> bc5269bfbb7f4e0131578d5bc2a87ce2c27716e8
         }
 
         $db = new Database();

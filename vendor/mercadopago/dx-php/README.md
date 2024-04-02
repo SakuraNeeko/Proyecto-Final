@@ -44,7 +44,19 @@ Simple usage looks like:
 ```php
 <?php
     // Step 1: Require the library from your Composer vendor folder
+<<<<<<< HEAD
     require 'vendor/autoload.php';
+=======
+<<<<<<< HEAD
+    require 'vendor/autoload.php';
+=======
+<<<<<<< HEAD
+    require 'vendor/autoload.php';
+=======
+    require_once 'vendor/autoload.php';
+>>>>>>> 3c6cb5762e2f334aa695fb1ed69e756cd7d3ec5f
+>>>>>>> 09d619fe8e08ffe7bbeeb58498e73a890730f4ff
+>>>>>>> bc5269bfbb7f4e0131578d5bc2a87ce2c27716e8
 
     use MercadoPago\Client\Payment\PaymentClient;
     use MercadoPago\Exceptions\MPApiException;
@@ -95,7 +107,19 @@ Simple usage looks like:
 ### Step 1: Require the library from your Composer vendor folder
 
 ```php
+<<<<<<< HEAD
 require 'vendor/autoload.php';
+=======
+<<<<<<< HEAD
+require 'vendor/autoload.php';
+=======
+<<<<<<< HEAD
+require 'vendor/autoload.php';
+=======
+require_once 'vendor/autoload.php';
+>>>>>>> 3c6cb5762e2f334aa695fb1ed69e756cd7d3ec5f
+>>>>>>> 09d619fe8e08ffe7bbeeb58498e73a890730f4ff
+>>>>>>> bc5269bfbb7f4e0131578d5bc2a87ce2c27716e8
 
 use MercadoPago\Client\Payment\PaymentClient;
 use MercadoPago\Exceptions\MPApiException;

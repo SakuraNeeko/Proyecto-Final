@@ -55,7 +55,11 @@ $categorias = $resultado->fetchAll(PDO::FETCH_ASSOC);
             <div class="row mb-2">
                 <div class="col">
                     <label for="imagen_principal" class="form-label">Imagen Principal</label>
+<<<<<<< HEAD
                     <input type="file" class="form-control" name="imagen_principal" id="imagen_principal" accept="image/jpeg/JPEG" />
+=======
+                    <input type="file" class="form-control" name="imagen_principal" id="imagen_principal" accept="image/jpeg/JPEG" required />
+>>>>>>> bc5269bfbb7f4e0131578d5bc2a87ce2c27716e8
                 </div>
                 <div class="col">
                     <label for="otras_imagenes" class="form-label">Otras imágenes</label>

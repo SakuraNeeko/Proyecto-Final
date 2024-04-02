@@ -1,3 +1,10 @@
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> 09d619fe8e08ffe7bbeeb58498e73a890730f4ff
+>>>>>>> bc5269bfbb7f4e0131578d5bc2a87ce2c27716e8
 <?php 
 
 require 'config/config.php';
@@ -8,8 +15,13 @@ $db=new Database();
 $con=$db->conectar();
 
 /* $password = password_hash('admin', PASSWORD_DEFAULT);
+<<<<<<< HEAD
 $sql = "INSERT INTO admin(usuario, password, nombre, email, activo, fecha_alta) VALUES ('neeko','$password', 'Administrador','bryanmoranchandi@gmailcom','1',NOW())";
 $con->query($sql);   */   /* --Esto es para ingresar un primer admin-- */
+=======
+$sql = "INSERT INTO admin(usuario, password, nombre, email, activo, fecha_alta) VALUES ('admin','$password', 'Administrador','bryanmoranchandi@gmailcom','1',NOW())";
+$con->query($sql); */    /* --Esto es para ingresar un primer admin-- */
+>>>>>>> bc5269bfbb7f4e0131578d5bc2a87ce2c27716e8
 
 $errors = [] ;
 
@@ -26,7 +38,10 @@ if(!empty($_POST)){
     }
 }
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> bc5269bfbb7f4e0131578d5bc2a87ce2c27716e8
 ?>
 
 <!DOCTYPE html>
@@ -68,7 +83,11 @@ if(!empty($_POST)){
                                         <?php mostrarMensajes($errors); ?>
 
                                         <div class="d-flex align-items-center justify-content-between mt-4 mb-0">
+<<<<<<< HEAD
                                             <!-- <a class="small" href="password.html">Forgot Password?</a> -->
+=======
+                                            <a class="small" href="password.html">Forgot Password?</a>
+>>>>>>> bc5269bfbb7f4e0131578d5bc2a87ce2c27716e8
                                             <button type="submit" class="btn btn-primary">Login</button>
                                         </div>
                                     </form>
@@ -93,4 +112,22 @@ if(!empty($_POST)){
     <script src="js/scripts.js"></script>
 </body>
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+=======
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>Login</h2>
+</body>
+>>>>>>> 3c6cb5762e2f334aa695fb1ed69e756cd7d3ec5f
+>>>>>>> 09d619fe8e08ffe7bbeeb58498e73a890730f4ff
+>>>>>>> bc5269bfbb7f4e0131578d5bc2a87ce2c27716e8
 </html>

@@ -5,7 +5,15 @@ class Database {
     private $hostname = "localhost";
     private $database = "tienda_online";
     private $username = "root";
+<<<<<<< HEAD
     private $password = "";
+=======
+<<<<<<< HEAD
+    private $password = "";
+=======
+    private $password = "equestria22";
+>>>>>>> 09d619fe8e08ffe7bbeeb58498e73a890730f4ff
+>>>>>>> bc5269bfbb7f4e0131578d5bc2a87ce2c27716e8
     private $charset = "utf8";
 
     function conectar()
